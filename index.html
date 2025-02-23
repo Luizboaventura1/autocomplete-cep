@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/CEP-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/src/main.ts" defer></script>
     <meta name="description" content="Autocomplete CEP" />
     <meta name="keywords" content="autocomplete, cep, address" />
     <meta name="author" content="Luiz" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#191919" />
+    <script type="module" src="/src/main.ts" defer></script>
+    <script type="module" src="/src/scripts/complete-cep.ts" defer></script>
     <title>AUTOCOMPLETE CEP</title>
   </head>
   <body>
@@ -24,32 +25,38 @@
           <form class="w-full max-w-lg space-y-4">
             <div class="flex gap-4">
               <input
+                id="CEPInput"
                 class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
                 type="number"
                 placeholder="Digite seu CEP"
               />
               <input
+                id="NumberInput"
                 class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
                 type="number"
                 placeholder="NÚMERO Ex: 200"
               />
             </div>
             <input
+              id="StreetInput"
               type="text"
               class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
               placeholder="RUA"
             />
             <input
+              id="NeighborhoodInput"
               type="text"
               class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
               placeholder="BAIRRO"
             />
             <input
+              id="CityInput"
               type="text"
               class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
               placeholder="CIDADE"
             />
             <input
+              id="StateInput"
               type="text"
               class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
               placeholder="ESTADO"
