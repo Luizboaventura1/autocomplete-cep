@@ -11,6 +11,7 @@
     <meta name="theme-color" content="#191919" />
     <script type="module" src="/src/main.ts" defer></script>
     <script type="module" src="/src/scripts/complete-cep.ts" defer></script>
+    <script type="module" src="src/scripts/validateInputs.ts"></script>
     <title>AUTOCOMPLETE CEP</title>
   </head>
   <body>
@@ -24,43 +25,61 @@
         <main class="h-[calc(100dvh-70px)] flex justify-center items-center">
           <form class="w-full max-w-lg space-y-4">
             <div class="flex gap-4">
-              <input
-                id="CEPInput"
-                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
-                type="number"
-                placeholder="Digite seu CEP"
-              />
-              <input
-                id="NumberInput"
-                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
-                type="number"
-                placeholder="NÚMERO Ex: 200"
-              />
+              <div class="w-full">
+                <input
+                  id="CEPInput"
+                  class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0"
+                  type="text"
+                  placeholder="Digite seu CEP"
+                />
+                <span id="CEPInputError" class="text-red-500 text-sm"></span>
+              </div>
+              <div class="w-full">
+                <input
+                  id="NumberInput"
+                  class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0"
+                  type="number"
+                  placeholder="NÚMERO Ex: 200"
+                />
+                <span id="NumberInputError" class="text-red-500 text-sm"></span>
+              </div>
             </div>
-            <input
-              id="StreetInput"
-              type="text"
-              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
-              placeholder="RUA"
-            />
-            <input
-              id="NeighborhoodInput"
-              type="text"
-              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
-              placeholder="BAIRRO"
-            />
-            <input
-              id="CityInput"
-              type="text"
-              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
-              placeholder="CIDADE"
-            />
-            <input
-              id="StateInput"
-              type="text"
-              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
-              placeholder="ESTADO"
-            />
+            <div>
+              <input
+                id="StreetInput"
+                type="text"
+                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0"
+                placeholder="RUA"
+              />
+              <span id="StreetInputError" class="text-red-500 text-sm"></span>
+            </div>
+            <div>
+              <input
+                id="NeighborhoodInput"
+                type="text"
+                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0"
+                placeholder="BAIRRO"
+              />
+              <span id="NeighborhoodInputError" class="text-red-500 text-sm"></span>
+            </div>
+            <div>
+              <input
+                id="CityInput"
+                type="text"
+                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0"
+                placeholder="CIDADE"
+              />
+              <span id="CityInputError" class="text-red-500 text-sm"></span>
+            </div>
+            <div>
+              <input
+                id="StateInput"
+                type="text"
+                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0"
+                placeholder="ESTADO"
+              />
+              <span id="StateInputError" class="text-red-500 text-sm"></span>
+            </div>
           </form>
         </main>
       </div>
