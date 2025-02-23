@@ -1,5 +1,6 @@
 import type Address from "../types/Address";
 import cepService from "../services/CEPService";
+import debounce from "../utils/debounce";
 
 const CEPInput = document.getElementById("CEPInput") as HTMLInputElement | null;
 const StreetInput = document.getElementById("StreetInput") as HTMLInputElement | null;
@@ -7,24 +8,12 @@ const NeighborhoodInput = document.getElementById("NeighborhoodInput") as HTMLIn
 const CityInput = document.getElementById("CityInput") as HTMLInputElement | null;
 const StateInput = document.getElementById("StateInput") as HTMLInputElement | null;
 
-type DebouncedFunction<T extends any[]> = (...args: T) => void;
-
-const debounce = <T extends any[]>(func: DebouncedFunction<T>, debounceDelay: number) => {
-  let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-  return function (this: any, ...args: T) {
-    const context = this;
-
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    timeoutId = setTimeout(() => {
-      func.apply(context, args);
-      timeoutId = undefined;
-    }, debounceDelay);
-  };
-};
+const StreetInputError = document.getElementById("StreetInputError") as HTMLSpanElement | null;
+const NeighborhoodInputError = document.getElementById(
+  "NeighborhoodInputError"
+) as HTMLSpanElement | null;
+const CityInputError = document.getElementById("CityInputError") as HTMLSpanElement | null;
+const StateInputError = document.getElementById("StateInputError") as HTMLSpanElement | null;
 
 CEPInput?.addEventListener(
   "input",
@@ -80,4 +69,18 @@ const resetInputs = () => {
   if (StateInput) {
     StateInput.value = "";
   }
+
+  StreetInputError!.textContent = "";
+  NeighborhoodInputError!.textContent = "";
+  CityInputError!.textContent = "";
+  StateInputError!.textContent = "";
+
+  StreetInput?.classList.add("border-neutral-600");
+  StreetInput?.classList.remove("border-red-400");
+  NeighborhoodInput?.classList.add("border-neutral-600");
+  NeighborhoodInput?.classList.remove("border-red-400");
+  CityInput?.classList.add("border-neutral-600");
+  CityInput?.classList.remove("border-red-400");
+  StateInput?.classList.add("border-neutral-600");
+  StateInput?.classList.remove("border-red-400");
 };
