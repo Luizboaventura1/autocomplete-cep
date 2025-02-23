@@ -2,7 +2,6 @@ import type Address from "../types/Address";
 import cepService from "../services/CEPService";
 
 const CEPInput = document.getElementById("CEPInput") as HTMLInputElement | null;
-const NumberInput = document.getElementById("NumberInput") as HTMLInputElement | null;
 const StreetInput = document.getElementById("StreetInput") as HTMLInputElement | null;
 const NeighborhoodInput = document.getElementById("NeighborhoodInput") as HTMLInputElement | null;
 const CityInput = document.getElementById("CityInput") as HTMLInputElement | null;
@@ -38,7 +37,7 @@ CEPInput?.addEventListener(
       if (typeof address === "string") {
         throw new Error(address);
       }
-      
+
       resetInputs();
       fillInputs(address);
     } catch (error: unknown) {
