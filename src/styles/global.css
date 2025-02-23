@@ -1,1 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
+
+* {
+  font-family: "Inter", serif;
+}
+
+.primary-color-text {
+  color: #d7d7d7;
+}
+
+.secondary-color-text {
+  color: #c4ff00;
+}
+
+.primary-color-bg {
+  background-color: #191919;
+}
+
+.secondary-color-bg {
+  background-color: #1a1a1a;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

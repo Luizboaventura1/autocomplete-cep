@@ -1,13 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/main.ts" defer></script>
+    <meta name="description" content="Autocomplete CEP" />
+    <meta name="keywords" content="autocomplete, cep, address" />
+    <meta name="author" content="Luiz" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#000000" />
     <title>AUTOCOMPLETE CEP</title>
   </head>
   <body>
-    
+    <header class="h-screen primary-color-bg">
+      <div class="container mx-auto px-4">
+        <nav class="h-[70px] flex items-center">
+          <h1 class="primary-color-text font-semibold">
+            AUTOCOMPLETE <span class="secondary-color-text">CEP</span>
+          </h1>
+        </nav>
+        <main class="h-[calc(100dvh-70px)] flex justify-center items-center">
+          <form class="w-full max-w-lg space-y-4">
+            <div class="flex gap-4">
+              <input
+                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
+                type="number"
+                placeholder="Digite seu CEP"
+              />
+              <input
+                class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
+                type="number"
+                placeholder="NÚMERO Ex: 200"
+              />
+            </div>
+            <input
+              type="text"
+              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
+              placeholder="RUA"
+            />
+            <input
+              type="text"
+              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
+              placeholder="BAIRRO"
+            />
+            <input
+              type="text"
+              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
+              placeholder="CIDADE"
+            />
+            <input
+              type="text"
+              class="border-2 border-neutral-600 rounded-lg p-3 primary-color-text w-full outline-0 focus:border-lime-400"
+              placeholder="ESTADO"
+            />
+          </form>
+        </main>
+      </div>
+    </header>
   </body>
 </html>
