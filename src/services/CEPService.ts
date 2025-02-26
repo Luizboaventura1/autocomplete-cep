@@ -4,39 +4,61 @@ import type Address from "../types/Address";
 class CEPService extends ICEPService {
   async getAddress(cep: string | number): Promise<Address | string> {
     try {
-      if (!ICEPService.isValidCEP(cep)) {
-        throw new Error("Invalid CEP format");
-      }
+      this.validateCEP(cep);
 
-      const response = await fetch(`${this.baseURL}/${cep}/json`);
+      const addressData = await this.fetchAddressData(cep);
 
-      if (!response.ok) {
-        throw new Error("Invalid CEP");
-      }
-
-      const addressData = await response.json();
-
-      return {
-        zipcode: addressData.cep,
-        street: addressData.logradouro,
-        complement: addressData.complemento,
-        unit: addressData.unidade,
-        neighborhood: addressData.bairro,
-        city: addressData.localidade,
-        stateAbbreviation: addressData.uf,
-        state: addressData.uf,
-        region: addressData.regiao,
-        ibge: addressData.ibge,
-        gia: addressData.gia,
-        areaCode: addressData.ddd,
-        siafi: addressData.siafi,
-      };
+      return this.transformAddressData(addressData);
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        return error.message;
-      }
-      return "An unknown error occurred";
+      return this.handleError(error);
     }
+  }
+
+  private validateCEP(cep: string | number): void {
+    if (!ICEPService.isValidCEP(cep)) {
+      throw new Error("Invalid CEP format");
+    }
+  }
+
+  private async fetchAddressData(cep: string | number): Promise<any> {
+    const response = await fetch(`${this.baseURL}/${cep}/json`);
+
+    if (!response.ok) {
+      throw new Error("The request failed");
+    }
+
+    const addressData = await response.json();
+
+    if (addressData.cep === undefined) {
+      throw new Error("Invalid CEP");
+    }
+
+    return addressData;
+  }
+
+  private transformAddressData(addressData: any): Address {
+    return {
+      zipcode: addressData.cep,
+      street: addressData.logradouro,
+      complement: addressData.complemento,
+      unit: addressData.unidade,
+      neighborhood: addressData.bairro,
+      city: addressData.localidade,
+      stateAbbreviation: addressData.uf,
+      state: addressData.uf,
+      region: addressData.regiao,
+      ibge: addressData.ibge,
+      gia: addressData.gia,
+      areaCode: addressData.ddd,
+      siafi: addressData.siafi,
+    };
+  }
+
+  private handleError(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return "An unknown error occurred";
   }
 }
 
