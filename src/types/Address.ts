@@ -1,5 +1,5 @@
 export default interface Address {
-  zipcode: string;
+  cep: string;
   street: string;
   complement?: string;
   unit: string;

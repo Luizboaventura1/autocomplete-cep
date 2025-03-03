@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from "axios";
 import ICEPService from "../types/ICEPService";
 import type Address from "../types/Address";
 
@@ -8,7 +9,7 @@ class CEPService extends ICEPService {
 
       const addressData = await this.fetchAddressData(cep);
 
-      return this.transformAddressData(addressData);
+      return addressData;
     } catch (error: unknown) {
       return this.handleError(error);
     }
@@ -21,24 +22,35 @@ class CEPService extends ICEPService {
   }
 
   private async fetchAddressData(cep: string | number): Promise<any> {
-    const response = await fetch(`${this.baseURL}/${cep}/json`);
+    try {
+      const cepApiResponse: AxiosResponse<Address> = await axios.get(`/${cep}/json`, {
+        baseURL: this.baseURL,
+      });
+      
+      if (cepApiResponse.status !== 200) {
+        throw new Error("The request failed");
+      }
 
-    if (!response.ok) {
-      throw new Error("The request failed");
+      const addressData = cepApiResponse.data;
+
+      if (addressData.cep === undefined) {
+        throw new Error("Invalid CEP");
+      }
+
+      return this.transformAddressData(addressData);
+
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw error;
+      }
+
+      throw "An unknown error occurred";
     }
-
-    const addressData = await response.json();
-
-    if (addressData.cep === undefined) {
-      throw new Error("Invalid CEP");
-    }
-
-    return addressData;
   }
 
   private transformAddressData(addressData: any): Address {
     return {
-      zipcode: addressData.cep,
+      cep: addressData.cep,
       street: addressData.logradouro,
       complement: addressData.complemento,
       unit: addressData.unidade,
